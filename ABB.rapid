@@ -1,0 +1,93 @@
+﻿MODULE Module1
+	PERS tooldata boligrafo2:=[TRUE,[[0,0,137],[1,0,0,0]],[0.25,[0,0,1],[1,0,0,0],0,0,0]];
+	CONST robtarget inicio:=[[447.405665295,0,546.05],[0.5,0,0.866025404,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+	CONST robtarget P1:=[[350.0,-100.0,-22.4],[0.15,0.493,-0.852,0.09],[-1,0,-1,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+! Se define la variable int_mov_stop para usarla con la interrupción VAR intum int_move_stop
+	VAR intnum int_move_stop;
+	
+	
+	PROC track_1()
+
+		MoveJ inicio,v500,fine,boligrafo2\WObj:=wobj0;!Punto de reposo inicial
+
+	!Figura Círculos
+
+		MoveJ P1,v500,fine,boligrafo2\WObj:=wobj0;!P1, punto de origen, comienzo de la figura
+		MoveL Offs(P1,0,0,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,34.5,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,34.5,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo primer circulo
+		MoveC Offs(P1,63,41.5,0), Offs(P1,70,48.5,0),v50,fine, boligrafo2\WObj:=wobj0;
+		MoveC Offs(P1,77,41.5,0), Offs(P1,70,34.5,0),v50,fine, boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,34.5,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,62,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,62,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo segundo circulo
+		MoveC Offs(P1,47.5,84.5,0), Offs(P1,70,107,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveC Offs(P1,92.5,84.5,0), Offs(P1,70,62,0),v50,fine,boligrafo2\WObj:=wobj0; 
+		MoveL Offs(P1,70,62,15),v50,fine,boligrafo2\WObj:=wobj0; 
+		MoveL Offs(P1,70,120,15),v50,fine,boligrafo2\WObj:=wobj0; 
+		MoveL Offs(P1,70,120,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo ttercer circulo
+		MoveC Offs(P1,63,127,0), Offs(P1,70,134,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveC Offs(P1,77,127,0), Offs(P1,70,120,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,70,120,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,82,34,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,82,34,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo primera diagonal abajo izquierda
+		MoveL Offs(P1,101,67,0),v50,fine,boligrafo2\WObj:=wobj0;!termino primera diagonal abajo izquierda
+		MoveL Offs(P1,101,67,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,58,34,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,58,34,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo segunda diagonal arriba a la izquierda
+		MoveL Offs(P1,40,67,0),v50,fine,boligrafo2\WObj:=wobj0;!Termino segunda diagonal arriba a la izquieda
+		MoveL Offs(P1,40,67,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,58,34,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,58,34,0),v50,fine,boligrafo2\WObj:=wobj0;! hago arco de la izquierda
+		MoveC Offs(p1,70,27,0), Offs(P1,82,34,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,82,34,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,101,67,15),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,101,67,0),v50,fine,boligrafo2\WObj:=wobj0;!Empiezo arco abajo
+		MoveC Offs(P1,105,84,0), Offs(P1,101,100,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,82,133,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveC Offs(P1,70,141,0), Offs(P1,58,133,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,40,101,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveC Offs(P1,35.5,84,0), Offs(P1,40,67,0),v50,fine,boligrafo2\WObj:=wobj0;
+		MoveL Offs(P1,12,
+		
+			
+		MoveL inicio,v500,fine,boligrafo2\WObj:=wobj0; !Retorno al punto de reposo inicial
+	ENDPROC
+	
+	
+	PROC main()
+		!Se asocia la variable int_move_stop con la interrupción trap_move_stop,
+		!es decir, cuando la variable se active, se lanza la interrupción.
+		!Esta señal, se activa al activar la entrada digital di_8 con el comando ISignalDi
+		CONNECT int_move_stop WITH trap_move_stop;
+		!Asigna a la variable int_move_stop el valor de la entrada digital di_8
+		ISignalDI Entrada_8, 1, int_move_stop;
+		track_1;
+	ENDPROC
+	
+	
+!Interrupción
+
+
+	TRAP trap_move_stop
+		!Se para el robot
+		StopMove;
+		!Se espera a que la entrada di_8 se ponga de nuevo a cero
+		WaitDi Entrada_8, 0;
+		!Se reanuda el movimiento del robot
+		StartMove;
+	ENDTRAP
+
+ENDMODULE
+
+
+
+
+
+
+
+
+
+
+
+
